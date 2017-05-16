@@ -1,10 +1,36 @@
-import java.util.ArrayDeque;
-import java.util.Queue;
+class Queue<T> {
+	private Object[] data = null;
+	private int front;
+	private int rear;
+
+	public Queue() {
+		this(100);
+	}
+
+	public Queue(int initialSize) {
+		data = new Object[initialSize];
+		front = rear = 0;
+	}
+
+	public boolean add(T e) {
+		data[rear++] = e;
+		return true;
+	}
+
+	public T poll() {
+		T value = (T) data[front];
+		data[front++] = null;
+		return value;
+	}
+
+	public int size() {
+		return rear - front;
+	}
+}
 
 public class BowlingGame {
 
 	private static final String strike = "X", spare = "/", miss = "-";
-
 
 	private int getNum(String s) {
 		if (s.equals(strike))
@@ -18,15 +44,15 @@ public class BowlingGame {
 		String[] m = bowlingCode.split("\\|");
 		int len = m.length;
 		int sum = 0;
-		Queue<Integer> d = new ArrayDeque<>();
+		Queue<Integer> d = new Queue<>();
 		boolean flag = true;
 		for (int i = 0; i < len; i++) {
 			String cur = m[i];
-			if (cur.length() == 0){
+			if (cur.length() == 0) {
 				flag = false;
 				continue;
 			}
-			if (i != len - 1 &&cur.equals(strike)) {
+			if (i != len - 1 && cur.equals(strike)) {
 				int size = d.size();
 				for (int j = 0; j < size; j++) {
 					int p = d.poll();
@@ -58,7 +84,7 @@ public class BowlingGame {
 				int p = d.poll();
 				if (p == 2) {
 					if ((cur.length() > 1 && ((cur.charAt(1) + "")
-									.equals(spare))))
+							.equals(spare))))
 						sum += 10;
 					else
 						sum += getNum(cur.charAt(0) + "")
