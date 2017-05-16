@@ -1,13 +1,13 @@
-class Queue<T> {
+class l<T> {
 	private Object[] data = null;
 	private int front;
 	private int rear;
 
-	public Queue() {
+	public l() {
 		this(100);
 	}
 
-	public Queue(int initialSize) {
+	public l(int initialSize) {
 		data = new Object[initialSize];
 		front = rear = 0;
 	}
@@ -44,7 +44,7 @@ public class BowlingGame {
 		String[] m = bowlingCode.split("\\|");
 		int len = m.length;
 		int sum = 0;
-		Queue<Integer> d = new Queue<>();
+		l<Integer> d = new l<>();
 		boolean flag = true;
 		for (int i = 0; i < len; i++) {
 			String cur = m[i];
