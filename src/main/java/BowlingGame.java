@@ -1,5 +1,5 @@
 import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Queue;
 
 public class BowlingGame {
 
@@ -18,7 +18,7 @@ public class BowlingGame {
 		String[] m = bowlingCode.split("\\|");
 		int len = m.length;
 		int sum = 0;
-		Deque<Integer> d = new ArrayDeque<>();
+		Queue<Integer> d = new ArrayDeque<>();
 		boolean flag = true;
 		for (int i = 0; i < len; i++) {
 			String cur = m[i];
